@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CheckAuth(),
-      //initialRoute: Routes.splashScreen,
+      // home: CheckAuth(),
+      initialRoute: Routes.homeScreen,
       routes: Routes.getRoutes(context),
     );
   }
