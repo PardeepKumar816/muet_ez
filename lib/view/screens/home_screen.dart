@@ -31,39 +31,85 @@ class _HomeScreenState extends State<HomeScreen> {
                       bottomRight: Radius.circular(24),
                       bottomLeft: Radius.circular(24))),
             ),
+            // Positioned(
+            //   top: 16,
+            //   left: 0,
+            //   right: 0,
+            //   child: Opacity(
+            //     opacity: 0.1,
+            //     child: Image.asset('assets/images/muet_logo.png'),
+            //     // Stack(
+            //     //   children: [
+            //     //     // Implement the stroke
+            //     //     Text(
+            //     //       'Software Engineering',
+            //     //       textAlign: TextAlign.center,
+            //     //       style: TextStyle(
+            //     //         fontSize: 56,
+            //     //         letterSpacing: 5,
+            //     //         fontWeight: FontWeight.bold,
+            //     //         foreground: Paint()
+            //     //           ..style = PaintingStyle.stroke
+            //     //           ..strokeWidth = 10
+            //     //           ..color = AppColors.blue,
+            //     //       ),
+            //     //     ),
+            //     //     // The text inside
+            //     //     const Text(
+            //     //       'Software Engineering',
+            //     //       textAlign: TextAlign.center,
+            //     //       style: TextStyle(
+            //     //         fontSize: 56,
+            //     //         letterSpacing: 5,
+            //     //         fontWeight: FontWeight.bold,
+            //     //         color: AppColors.lightBlue,
+            //     //       ),
+            //     //     ),
+            //     //   ],
+            //     // ),
+            //   ),
+            // ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
-                  child: CircleAvatar(
-                    radius: 60,
-                    child: CircleAvatar(
-                      radius: 56,
-                      backgroundColor: AppColors.lightBlue,
-                      backgroundImage: AssetImage('assets/images/my_image.JPG'),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                const Padding(
-                    padding: EdgeInsets.only(left: 24),
-                    child: Text(
-                      'Pardeep Kumar',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                    )),
-                const SizedBox(
-                  height: 2,
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 24),
-                  child: Text(
-                    '19SW37',
-                    style: TextStyle(fontSize: 15),
+                Container(
+                  width: getDeviceSize(context).width * 0.9,
+                  height: getDeviceSize(context).height / 4,
+                  decoration: BoxDecoration(
+                      color: AppColors.blue,
+                      borderRadius: BorderRadius.all(Radius.circular(28))),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 60,
+                        child: CircleAvatar(
+                          radius: 56,
+                          backgroundColor: AppColors.lightBlue,
+                          backgroundImage:
+                              AssetImage('assets/images/my_image.JPG'),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        'Pardeep Kumar',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.white),
+                      ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        '19SW37',
+                        style: TextStyle(fontSize: 15, color: AppColors.white),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(
@@ -112,13 +158,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   backgroundColor:
                                                       AppColors.lightBlue,
                                                   radius: 40,
-                                                  child: ClipOval(
-                                                    child: Image.asset(
-                                                      e.imgUrl,
-                                                      width: 64,
-                                                      height: 72,
-                                                      fit: BoxFit.contain,
-                                                    ),
+                                                  child: Image.asset(
+                                                    e.imgUrl,
+                                                    width: 60,
+                                                    height: 70,
+                                                    fit: BoxFit.contain,
                                                   ),
                                                 ),
                                               ),
@@ -155,13 +199,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     backgroundColor:
                                                         AppColors.lightBlue,
                                                     radius: 40,
-                                                    child: ClipOval(
-                                                      child: Image.asset(
-                                                        e.imgUrl,
-                                                        width: 64,
-                                                        height: 72,
-                                                        fit: BoxFit.contain,
-                                                      ),
+                                                    child: Image.asset(
+                                                      e.imgUrl,
+                                                      width: 64,
+                                                      height: 72,
+                                                      fit: BoxFit.contain,
                                                     ),
                                                   )),
                                               const SizedBox(
@@ -230,7 +272,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
