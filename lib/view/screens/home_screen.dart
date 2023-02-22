@@ -76,13 +76,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   width: getDeviceSize(context).width * 0.9,
                   height: getDeviceSize(context).height / 4,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: AppColors.blue,
                       borderRadius: BorderRadius.all(Radius.circular(28))),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                    children: const [
                       CircleAvatar(
                         radius: 60,
                         child: CircleAvatar(
@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               AssetImage('assets/images/my_image.JPG'),
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 4,
                       ),
                       Text(
@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.w500,
                             color: AppColors.white),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 2,
                       ),
                       Text(
