@@ -1,8 +1,18 @@
+import 'package:muet_ez/view/screens/attendance_screen.dart';
 import 'package:muet_ez/view/screens/auth_screen.dart';
+import 'package:muet_ez/view/screens/challan_screen.dart';
+import 'package:muet_ez/view/screens/dinning_screen.dart';
+import 'package:muet_ez/view/screens/emergency_screen.dart';
+import 'package:muet_ez/view/screens/events_screen.dart';
 import 'package:muet_ez/view/screens/home_screen.dart';
+import 'package:muet_ez/view/screens/notification_screen.dart';
+import 'package:muet_ez/view/screens/profile_screen.dart';
+import 'package:muet_ez/view/screens/results_screen.dart';
+import 'package:muet_ez/view/screens/schedule_screen.dart';
 import 'package:muet_ez/view/screens/sign_in_screen.dart';
 import 'package:muet_ez/view/screens/sign_up_screen.dart';
 import 'package:muet_ez/view/screens/splash_screen.dart';
+import 'package:muet_ez/view/screens/transport_screen.dart';
 
 class Routes {
   static String signInScreen = '/SignInScreen';
@@ -10,6 +20,16 @@ class Routes {
   static String homeScreen = '/HomeScreen';
   static String authScreen = '/AuthScreen';
   static String splashScreen = '/SplashScreen';
+  static String challanScreen = 'ChallanScreen';
+  static String scheduleScreen = '/ScheduleScreen';
+  static String attendanceScreen = '/AttendanceScreen';
+  static String resultsScreen = '/ResultsScreen';
+  static String notificationScreen = '/NotificationScreen';
+  static String profileScreen = '/ProfileScreen';
+  static String eventsScreen = '/EventsScreen';
+  static String dinningScreen = '/DinningScreen';
+  static String transportScreen = '/TransportScreen';
+  static String emergencyScreen = '/EmergencyScreen';
 
   static getRoutes(context) => {
         Routes.signInScreen: (context) => SignInScreen(),
@@ -17,5 +37,15 @@ class Routes {
         Routes.homeScreen: (context) => HomeScreen(),
         Routes.signUpScreen: (context) => SignUpScreen(),
         Routes.splashScreen: (context) => SplashScreen(),
+        Routes.challanScreen: (context) => ChallanScreen(),
+        Routes.scheduleScreen: (context) => ScheduleScreen(),
+    Routes.attendanceScreen: (context)=> AttendanceScreen(),
+    Routes.resultsScreen: (context)=> ResultsScreen(),
+    Routes.profileScreen: (context)=> ProfileScreen(),
+    Routes.notificationScreen: (context)=> NotificationScreen(),
+    Routes.eventsScreen:(context)=> EventsScreen(),
+    Routes.dinningScreen:(context)=> DinningScreen(),
+    Routes.transportScreen:(context)=> TransportScreen(),
+    Routes.emergencyScreen: (context)=> EmergencyScreen(),
       };
 }
