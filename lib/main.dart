@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: CheckAuth(),
-      initialRoute: Routes.notificationScreen,
+      initialRoute: Routes.signUpScreen,
       routes: Routes.getRoutes(context),
     );
   }

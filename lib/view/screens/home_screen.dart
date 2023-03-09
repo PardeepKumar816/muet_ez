@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/constants.dart';
 import '../../model/user_actions_name.dart';
+import '../../routes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -153,7 +154,33 @@ class _HomeScreenState extends State<HomeScreen> {
                                       .map((e) => Column(
                                             children: [
                                               InkWell(
-                                                onTap: () {},
+                                                onTap: () {
+                                                  if(e.name == 'Attendance'){
+                                                    Navigator.pushReplacementNamed(context, Routes.attendanceScreen);
+                                                  }else if(e.name=='Schedule'){
+                                                    Navigator.pushReplacementNamed(context, Routes.scheduleScreen);
+                                                  }else if(e.name=='Map'){
+                                                    Navigator.pushReplacementNamed(context, Routes.mapScreen);
+                                                  }else if(e.name=='Emergency'){
+                                                    Navigator.pushReplacementNamed(context, Routes.emergencyScreen);
+                                                  }else if(e.name=='Challan'){
+                                                    Navigator.pushReplacementNamed(context, Routes.challanScreen);
+                                                  }else if(e.name=='Notification'){
+                                                    Navigator.pushReplacementNamed(context, Routes.notificationScreen);
+                                                  }else if(e.name=='Dinning'){
+                                                    Navigator.pushReplacementNamed(context, Routes.dinningScreen);
+                                                  }else if(e.name=='Profile'){
+                                                    Navigator.pushReplacementNamed(context, Routes.profileScreen);
+                                                  }else if(e.name=='Results'){
+                                                    Navigator.pushReplacementNamed(context, Routes.resultsScreen);
+                                                  } else if(e.name=='Events'){
+                                                    Navigator.pushReplacementNamed(context, Routes.eventsScreen);
+                                                  }  else if(e.name=='Transport'){
+                                                    Navigator.pushReplacementNamed(context, Routes.transportScreen);
+                                                  } else if(e.name=='Log out'){
+                                                   // Navigator.pushReplacementNamed(context, Routes.transportScreen);
+                                                  }
+                                                },
                                                 child: CircleAvatar(
                                                   backgroundColor:
                                                       AppColors.lightBlue,

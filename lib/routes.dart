@@ -5,6 +5,9 @@ import 'package:muet_ez/view/screens/dinning_screen.dart';
 import 'package:muet_ez/view/screens/emergency_screen.dart';
 import 'package:muet_ez/view/screens/events_screen.dart';
 import 'package:muet_ez/view/screens/home_screen.dart';
+import 'package:muet_ez/view/screens/map_screen.dart';
+import 'package:muet_ez/view/screens/news_download_screen.dart';
+import 'package:muet_ez/view/screens/notification_download_screen.dart';
 import 'package:muet_ez/view/screens/notification_screen.dart';
 import 'package:muet_ez/view/screens/profile_screen.dart';
 import 'package:muet_ez/view/screens/results_screen.dart';
@@ -30,6 +33,9 @@ class Routes {
   static String dinningScreen = '/DinningScreen';
   static String transportScreen = '/TransportScreen';
   static String emergencyScreen = '/EmergencyScreen';
+  static String notificationDownloadScreen = '/NotificationDownloadScreen';
+  static String newsDownloadScreen = '/NewsDownloadScreen';
+  static String mapScreen = '/MapScreen';
 
   static getRoutes(context) => {
         Routes.signInScreen: (context) => SignInScreen(),
@@ -47,5 +53,8 @@ class Routes {
     Routes.dinningScreen:(context)=> DinningScreen(),
     Routes.transportScreen:(context)=> TransportScreen(),
     Routes.emergencyScreen: (context)=> EmergencyScreen(),
+    Routes.notificationDownloadScreen: (context) => NotificationDownloadScreen(text: '',),
+    Routes.newsDownloadScreen : (context) => NewsDownloadScreen(text: '',),
+    Routes.mapScreen:(context)=>MapScreen(),
       };
 }

@@ -3,6 +3,7 @@ import 'package:muet_ez/model/dummy_data.dart';
 
 import '../../constants/app_colors.dart';
 import '../../constants/constants.dart';
+import '../../routes.dart';
 import '../widgets/app_drawer.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -35,7 +36,9 @@ class NotificationScreen extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: InkWell(
-                  onTap: (){},
+                  onTap: (){
+Navigator.pushNamed(context, Routes.notificationDownloadScreen,arguments: DummyData.notification[index]);
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     margin: const EdgeInsets.symmetric(horizontal: 8),

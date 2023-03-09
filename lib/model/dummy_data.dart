@@ -218,348 +218,348 @@ class DummyData {
     "First Semester": {
       "Calculus": {
         "theory": {
-          "marks obtained":"91",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "91",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         }
       },
       "Programming Fundamental": {
         "theory": {
-          "marks obtained":"86",
-          "credit hours":"3",
-          "grades":"A",
-          "quality points":"6.00",
+          "marks obtained": "86",
+          "credit hours": "3",
+          "grades": "A",
+          "quality points": "6.00",
         },
-        "practical":{
-          "marks obtained":"44",
-          "credit hours":"2",
-          "grades":"A",
-          "quality points":"6.00",
+        "practical": {
+          "marks obtained": "44",
+          "credit hours": "2",
+          "grades": "A",
+          "quality points": "6.00",
         }
       },
       "Introduction to Information & Communication Technology": {
         "theory": {
-          "marks obtained":"46",
-          "credit hours":"2",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "46",
+          "credit hours": "2",
+          "grades": "A+",
+          "quality points": "6.00",
         },
-        "practical":{
-          "marks obtained":"44",
-          "credit hours":"2",
-          "grades":"A",
-          "quality points":"6.00",
+        "practical": {
+          "marks obtained": "44",
+          "credit hours": "2",
+          "grades": "A",
+          "quality points": "6.00",
         }
       },
       "Functional English": {
         "theory": {
-          "marks obtained":"83",
-          "credit hours":"3",
-          "grades":"B+",
-          "quality points":"4.00",
+          "marks obtained": "83",
+          "credit hours": "3",
+          "grades": "B+",
+          "quality points": "4.00",
         }
       },
       "Applied Physics": {
         "theory": {
-          "marks obtained":"70",
-          "credit hours":"3",
-          "grades":"B",
-          "quality points":"2.00",
+          "marks obtained": "70",
+          "credit hours": "3",
+          "grades": "B",
+          "quality points": "2.00",
         }
       },
     },
-    "Second Semester":{
-      "Introduction to Software Engineering":{
+    "Second Semester": {
+      "Introduction to Software Engineering": {
         "theory": {
-          "marks obtained":"91",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "91",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         }
       },
-      "Professional Practices":{
+      "Professional Practices": {
         "theory": {
-          "marks obtained":"91",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "91",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         }
       },
-      "Object Oriented Programming":{
+      "Object Oriented Programming": {
         "theory": {
-          "marks obtained":"86",
-          "credit hours":"3",
-          "grades":"A",
-          "quality points":"6.00",
+          "marks obtained": "86",
+          "credit hours": "3",
+          "grades": "A",
+          "quality points": "6.00",
         },
         "practical": {
-          "marks obtained":"48",
-          "credit hours":"2",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "48",
+          "credit hours": "2",
+          "grades": "A+",
+          "quality points": "6.00",
         },
       },
-      "Pakistan Study":{
+      "Pakistan Study": {
         "theory": {
-          "marks obtained":"40",
-          "credit hours":"2",
-          "grades":"B+",
-          "quality points":"6.00",
-        },
-
-      },
-      "Ethics":{
-        "theory": {
-          "marks obtained":"40",
-          "credit hours":"2",
-          "grades":"B+",
-          "quality points":"6.00",
+          "marks obtained": "40",
+          "credit hours": "2",
+          "grades": "B+",
+          "quality points": "6.00",
         },
 
       },
-      "Linear Algebra & Analytical Geometry":{
+      "Ethics": {
         "theory": {
-          "marks obtained":"94",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "40",
+          "credit hours": "2",
+          "grades": "B+",
+          "quality points": "6.00",
         },
 
       },
-    },
-    "Third Semester":{
-      "Introduction to Software Engineering":{
+      "Linear Algebra & Analytical Geometry": {
         "theory": {
-          "marks obtained":"91",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
-        }
-      },
-      "Professional Practices":{
-        "theory": {
-          "marks obtained":"91",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
-        }
-      },
-      "Object Oriented Programming":{
-        "theory": {
-          "marks obtained":"86",
-          "credit hours":"3",
-          "grades":"A",
-          "quality points":"6.00",
-        },
-        "practical": {
-          "marks obtained":"48",
-          "credit hours":"2",
-          "grades":"A+",
-          "quality points":"6.00",
-        },
-      },
-      "Pakistan Study":{
-        "theory": {
-          "marks obtained":"40",
-          "credit hours":"2",
-          "grades":"B+",
-          "quality points":"6.00",
-        },
-
-      },
-      "Ethics":{
-        "theory": {
-          "marks obtained":"40",
-          "credit hours":"2",
-          "grades":"B+",
-          "quality points":"6.00",
-        },
-
-      },
-      "Linear Algebra & Analytical Geometry":{
-        "theory": {
-          "marks obtained":"94",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "94",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         },
 
       },
     },
-    "Fourth Semester":{
-      "Introduction to Software Engineering":{
+    "Third Semester": {
+      "Introduction to Software Engineering": {
         "theory": {
-          "marks obtained":"91",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "91",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         }
       },
-      "Professional Practices":{
+      "Professional Practices": {
         "theory": {
-          "marks obtained":"91",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "91",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         }
       },
-      "Object Oriented Programming":{
+      "Object Oriented Programming": {
         "theory": {
-          "marks obtained":"86",
-          "credit hours":"3",
-          "grades":"A",
-          "quality points":"6.00",
+          "marks obtained": "86",
+          "credit hours": "3",
+          "grades": "A",
+          "quality points": "6.00",
         },
         "practical": {
-          "marks obtained":"48",
-          "credit hours":"2",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "48",
+          "credit hours": "2",
+          "grades": "A+",
+          "quality points": "6.00",
         },
       },
-      "Pakistan Study":{
+      "Pakistan Study": {
         "theory": {
-          "marks obtained":"40",
-          "credit hours":"2",
-          "grades":"B+",
-          "quality points":"6.00",
-        },
-
-      },
-      "Ethics":{
-        "theory": {
-          "marks obtained":"40",
-          "credit hours":"2",
-          "grades":"B+",
-          "quality points":"6.00",
+          "marks obtained": "40",
+          "credit hours": "2",
+          "grades": "B+",
+          "quality points": "6.00",
         },
 
       },
-      "Linear Algebra & Analytical Geometry":{
+      "Ethics": {
         "theory": {
-          "marks obtained":"94",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "40",
+          "credit hours": "2",
+          "grades": "B+",
+          "quality points": "6.00",
+        },
+
+      },
+      "Linear Algebra & Analytical Geometry": {
+        "theory": {
+          "marks obtained": "94",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         },
 
       },
     },
-    "Fifth Semester":{
-      "Introduction to Software Engineering":{
+    "Fourth Semester": {
+      "Introduction to Software Engineering": {
         "theory": {
-          "marks obtained":"91",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "91",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         }
       },
-      "Professional Practices":{
+      "Professional Practices": {
         "theory": {
-          "marks obtained":"91",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "91",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         }
       },
-      "Object Oriented Programming":{
+      "Object Oriented Programming": {
         "theory": {
-          "marks obtained":"86",
-          "credit hours":"3",
-          "grades":"A",
-          "quality points":"6.00",
+          "marks obtained": "86",
+          "credit hours": "3",
+          "grades": "A",
+          "quality points": "6.00",
         },
         "practical": {
-          "marks obtained":"48",
-          "credit hours":"2",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "48",
+          "credit hours": "2",
+          "grades": "A+",
+          "quality points": "6.00",
         },
       },
-      "Pakistan Study":{
+      "Pakistan Study": {
         "theory": {
-          "marks obtained":"40",
-          "credit hours":"2",
-          "grades":"B+",
-          "quality points":"6.00",
-        },
-
-      },
-      "Ethics":{
-        "theory": {
-          "marks obtained":"40",
-          "credit hours":"2",
-          "grades":"B+",
-          "quality points":"6.00",
+          "marks obtained": "40",
+          "credit hours": "2",
+          "grades": "B+",
+          "quality points": "6.00",
         },
 
       },
-      "Linear Algebra & Analytical Geometry":{
+      "Ethics": {
         "theory": {
-          "marks obtained":"94",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "40",
+          "credit hours": "2",
+          "grades": "B+",
+          "quality points": "6.00",
+        },
+
+      },
+      "Linear Algebra & Analytical Geometry": {
+        "theory": {
+          "marks obtained": "94",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         },
 
       },
     },
-    "Sixth Semester":{
-      "Introduction to Software Engineering":{
+    "Fifth Semester": {
+      "Introduction to Software Engineering": {
         "theory": {
-          "marks obtained":"91",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "91",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         }
       },
-      "Professional Practices":{
+      "Professional Practices": {
         "theory": {
-          "marks obtained":"91",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "91",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         }
       },
-      "Object Oriented Programming":{
+      "Object Oriented Programming": {
         "theory": {
-          "marks obtained":"86",
-          "credit hours":"3",
-          "grades":"A",
-          "quality points":"6.00",
+          "marks obtained": "86",
+          "credit hours": "3",
+          "grades": "A",
+          "quality points": "6.00",
         },
         "practical": {
-          "marks obtained":"48",
-          "credit hours":"2",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "48",
+          "credit hours": "2",
+          "grades": "A+",
+          "quality points": "6.00",
         },
       },
-      "Pakistan Study":{
+      "Pakistan Study": {
         "theory": {
-          "marks obtained":"40",
-          "credit hours":"2",
-          "grades":"B+",
-          "quality points":"6.00",
-        },
-
-      },
-      "Ethics":{
-        "theory": {
-          "marks obtained":"40",
-          "credit hours":"2",
-          "grades":"B+",
-          "quality points":"6.00",
+          "marks obtained": "40",
+          "credit hours": "2",
+          "grades": "B+",
+          "quality points": "6.00",
         },
 
       },
-      "Linear Algebra & Analytical Geometry":{
+      "Ethics": {
         "theory": {
-          "marks obtained":"94",
-          "credit hours":"3",
-          "grades":"A+",
-          "quality points":"6.00",
+          "marks obtained": "40",
+          "credit hours": "2",
+          "grades": "B+",
+          "quality points": "6.00",
+        },
+
+      },
+      "Linear Algebra & Analytical Geometry": {
+        "theory": {
+          "marks obtained": "94",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
+        },
+
+      },
+    },
+    "Sixth Semester": {
+      "Introduction to Software Engineering": {
+        "theory": {
+          "marks obtained": "91",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
+        }
+      },
+      "Professional Practices": {
+        "theory": {
+          "marks obtained": "91",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
+        }
+      },
+      "Object Oriented Programming": {
+        "theory": {
+          "marks obtained": "86",
+          "credit hours": "3",
+          "grades": "A",
+          "quality points": "6.00",
+        },
+        "practical": {
+          "marks obtained": "48",
+          "credit hours": "2",
+          "grades": "A+",
+          "quality points": "6.00",
+        },
+      },
+      "Pakistan Study": {
+        "theory": {
+          "marks obtained": "40",
+          "credit hours": "2",
+          "grades": "B+",
+          "quality points": "6.00",
+        },
+
+      },
+      "Ethics": {
+        "theory": {
+          "marks obtained": "40",
+          "credit hours": "2",
+          "grades": "B+",
+          "quality points": "6.00",
+        },
+
+      },
+      "Linear Algebra & Analytical Geometry": {
+        "theory": {
+          "marks obtained": "94",
+          "credit hours": "3",
+          "grades": "A+",
+          "quality points": "6.00",
         },
 
       },
@@ -581,5 +581,61 @@ class DummyData {
     'Provisional End Semester Attendance Reports: 21-batch 3rd Semester and 22-batch 1st Semester Masters and PhD courses	16/06/2022 - 2:36pm',
     'Notification Regarding Registration of 09 to14 Batches	12/05/2022 - 1:36pm',
   ];
+  static List<String> events = [
+    'Admissions Open for PhD & Master Programs - Spring 2023	17/12/2022 - 11:23am',
+    'Report on training on OBE Implementation	06/03/2023 - 3:52pm',
+    'Seminar on "Deep Learning"	06/03/2023 - 3:47pm',
+    'Lecturer and Research Assistant (Contract Basis) at Mining Engineering Department	06/03/2023 - 3:42pm',
+    'Faculty Position on Contract Basis at Department of Architecture	06/03/2023 - 3:38pm',
+    'MUTA- Need Cum Merit SCHOLARSHIP 2023	18/02/2023 - 4:02am',
+    'Position Vacant for Lecturer (On Contract) at Department of Mechatronic Engineering	10/02/2023 - 5:23pm',
+    'Research Assistant Positions (On Contract Basis) at Department of Mechanical Engineering	08/02/2023 - 9:09pm',
+    'MUET Jamshoro team secured a grant of \$9800 in EPICS in the IEEE, Access and Abilities category	06/02/2023 - 2:35pm',
+    'Faculty Position in Centre of English Language and Linguistics	01/02/2023 - 3:20pm',
+    'Faculty Positions (Lecturer Maths. & English) SZAB Campus Khairpur Mir\'s	31/01/2023 - 1:36pm',
+    'Result of the PG Admissions Test held on 28-01-2023	30/01/2023 - 4:38pm',
+    'Faculty Position at IEEM, Mehran UET, Jamshoro	30/01/2023 - 2:07pm',
+    'Pre-Admission Test Result (Phase-3) - 24-01-2023	24/01/2023 - 3:55pm',
+    '3rd COT List of Merit & Self-Finance Candidates of 22-Batch	21/01/2023 - 2:30am',
+  ];
+  static Map<String,dynamic> dinning = {
+    'Hill Top Canteen':{
+      'address':'Department of Mining Engineering',
+      'time':'7:00 AM to 3:00 PM',
+      'meals':['Breakfast','Lunch','Dinner'],
+      'restaurant dinning':['Indoor','Outdoor'],
+      'breakfast':[
+        'Omelet',
+        'half fry',
+        'Aanda Qeema',
+        'Aloo Chips',
+        'Tea',
+        'Paratha',
+      ],
+      'lunch':[
+        'Biryani',
+        'Bhindi',
+        'Choola',
+        'Mix Sabzi',
+      ],
+      'dinner':[],
+      'image':['assets/images/news_image.png','assets/images/news_image.png'],
+    },
+  };
+
+  static Map<String,dynamic> transport = {
+    '27':{
+      'Morning: 6:00 AM':'Auto Bhan - Gudu Chowk - Ali Palace',
+      'Noon: 3:00 PM (12PM Firday)':'Ali Palace - Gudu Chowk - Auto Bhan Road - Latifibad No. 7',
+      'Evening: 5:00 PM':'Wadhu Wah - Qasim Chowk - Gul Center',
+      'Night: 8:00 PM':'Gul Center - Qasim Chowk - Abdullah City - Main Gate - CC - Sachal Hostel - Grils Hostel',
+    },
+    '37':{
+      'Morning: 6:00 AM':'Auto Bhan - Gudu Chowk - Ali Palace',
+      'Noon: 3:00 PM (12PM Firday)':'Ali Palace - Gudu Chowk - Auto Bhan Road - Latifibad No. 7',
+      'Evening: 5:00 PM':'Wadhu Wah - Qasim Chowk - Gul Center',
+      'Night: 8:00 PM':'Gul Center - Qasim Chowk - Abdullah City - Main Gate - CC - Sachal Hostel - Grils Hostel',
+    },
+  };
 
 }
