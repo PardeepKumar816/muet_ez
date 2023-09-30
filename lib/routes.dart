@@ -1,3 +1,4 @@
+import 'package:muet_ez/view/screens/admin/home_screen_admin.dart';
 import 'package:muet_ez/view/screens/attendance_screen.dart';
 import 'package:muet_ez/view/screens/auth_screen.dart';
 import 'package:muet_ez/view/screens/challan_screen.dart';
@@ -13,13 +14,13 @@ import 'package:muet_ez/view/screens/profile_screen.dart';
 import 'package:muet_ez/view/screens/results_screen.dart';
 import 'package:muet_ez/view/screens/schedule_screen.dart';
 import 'package:muet_ez/view/screens/sign_in_screen.dart';
-import 'package:muet_ez/view/screens/sign_up_screen.dart';
+//import 'package:muet_ez/view/screens/sign_up_screen.dart';
 import 'package:muet_ez/view/screens/splash_screen.dart';
 import 'package:muet_ez/view/screens/transport_screen.dart';
 
 class Routes {
   static String signInScreen = '/SignInScreen';
-  static String signUpScreen = '/SignUpScreen';
+  //static String signUpScreen = '/SignUpScreen';
   static String homeScreen = '/HomeScreen';
   static String authScreen = '/AuthScreen';
   static String splashScreen = '/SplashScreen';
@@ -36,12 +37,13 @@ class Routes {
   static String notificationDownloadScreen = '/NotificationDownloadScreen';
   static String newsDownloadScreen = '/NewsDownloadScreen';
   static String mapScreen = '/MapScreen';
+  static String homeScreenAdmin = '/HomeScreenAdmin';
 
   static getRoutes(context) => {
         Routes.signInScreen: (context) => SignInScreen(),
-        Routes.authScreen: (context) => AuthScreen(),
-        Routes.homeScreen: (context) => HomeScreen(),
-        Routes.signUpScreen: (context) => SignUpScreen(),
+        Routes.authScreen: (context) => const AuthScreen(),
+        Routes.homeScreen: (context) => const HomeScreen(),
+       // Routes.signUpScreen: (context) => SignUpScreen(),
         Routes.splashScreen: (context) => SplashScreen(),
         Routes.challanScreen: (context) => ChallanScreen(),
         Routes.scheduleScreen: (context) => ScheduleScreen(),
@@ -56,5 +58,6 @@ class Routes {
     Routes.notificationDownloadScreen: (context) => NotificationDownloadScreen(text: '',),
     Routes.newsDownloadScreen : (context) => NewsDownloadScreen(text: '',),
     Routes.mapScreen:(context)=>MapScreen(),
+    Routes.homeScreenAdmin:(context) => HomeScreenAdmin(),
       };
 }

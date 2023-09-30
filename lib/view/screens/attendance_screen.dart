@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:muet_ez/model/dummy_data.dart';
-
 import '../../constants/app_colors.dart';
 import '../../constants/constants.dart';
 import '../widgets/app_drawer.dart';
@@ -43,7 +41,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
               elevation: 0,
               foregroundColor: AppColors.black,
             ),
-            drawer: AppDrawer(),
+            drawer: const AppDrawer(),
             backgroundColor: AppColors.blue,
             body: SafeArea(
               child: Stack(

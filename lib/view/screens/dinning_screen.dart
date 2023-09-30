@@ -1,14 +1,20 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:muet_ez/model/dummy_data.dart';
-
+import 'package:muet_ez/model/networking/firebase_data/firebase_data.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/constants.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/food_item_dialog.dart';
 
-class DinningScreen extends StatelessWidget {
+class DinningScreen extends StatefulWidget {
   const DinningScreen({Key? key}) : super(key: key);
 
+  @override
+  State<DinningScreen> createState() => _DinningScreenState();
+}
+
+class _DinningScreenState extends State<DinningScreen> {
   bool isDinningEmpty(int index){
     bool flag = false;
     if(DummyData.dinning.entries.toList()[index].value['dinner'].isEmpty){
@@ -23,6 +29,20 @@ class DinningScreen extends StatelessWidget {
 
     return flag;
   }
+  bool _isFetched = false;
+
+ @override
+  initState(){
+    super.initState();
+    getImages();
+ }
+
+  Future<void> getImages() async{
+   await ImagesFromCloudDatabase.getImagesFromDatabase();
+  setState(() {
+    _isFetched = true;
+  });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +52,7 @@ class DinningScreen extends StatelessWidget {
         elevation: 0,
         foregroundColor: AppColors.black,
       ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       backgroundColor: AppColors.blue,
       body: SafeArea(
         child: Stack(
@@ -53,7 +73,15 @@ class DinningScreen extends StatelessWidget {
                 decoration: const BoxDecoration(color: AppColors.white,borderRadius: BorderRadius.all(Radius.circular(12))),
                 child: Row(children: [
                   Flexible(
-                    flex:2,child:
+                    flex:1,child: _isFetched ?
+                     CachedNetworkImage(
+                        imageUrl: DummyData.dinning.entries.toList()[index].value['image'][0],
+                        progressIndicatorBuilder: (context, url, downloadProgress) =>
+                            CircularProgressIndicator(value: downloadProgress.progress),
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
+                         height: 420,fit: BoxFit.fitHeight,
+                      ) :
+                  //Image.network(DummyData.dinning.entries.toList()[index].value['image'][0],height: 420,fit: BoxFit.fitHeight,) :
                   Image.asset(DummyData.dinning.entries.toList()[index].value['image'][0],height: 420,fit: BoxFit.fitHeight,),),
                   Flexible(
                       child:
@@ -141,6 +169,4 @@ class DinningScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }

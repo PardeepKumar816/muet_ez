@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/app_colors.dart';
@@ -5,7 +6,6 @@ import '../../model/dummy_data.dart';
 
 Future<dynamic> foodItemDialog(BuildContext context, int index,Function function) {
   return showDialog(context: context, builder: (context){
-    print(function.call(index));
     return Dialog(
       child: Container(
         height: function.call(index) ? 300 : 400,
@@ -77,10 +77,23 @@ Future<dynamic> foodItemDialog(BuildContext context, int index,Function function
                     ),
                   ],
                 )),
+            const SizedBox(width: 8,),
             Flexible(
               flex: 2,
               child:
-              Image.asset(DummyData.dinning.entries.toList()[index].value['image'][1],height: 400,fit: BoxFit.fitHeight,),),
+              CachedNetworkImage(
+                imageUrl: DummyData.dinning.entries.toList()[index].value['image'][1],
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    CircularProgressIndicator(value: downloadProgress.progress),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                height: function.call(index) ? 300 : 400,
+                fit: BoxFit.fitHeight,
+              )
+              // Image.network(DummyData.dinning.entries.toList()[index].value['image'][1],
+              //  height: function.call(index) ? 300 : 400,
+              //   fit: BoxFit.fitHeight,
+              //   ),
+            ),
           ],),
       ),
     );

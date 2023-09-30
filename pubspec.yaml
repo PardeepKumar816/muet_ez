@@ -40,6 +40,27 @@ dependencies:
   http: ^0.13.5
   shared_preferences: ^2.0.16
   google_maps_flutter: ^2.2.5
+  firebase_core: ^2.7.1
+  firebase_database: ^10.0.15
+  cached_network_image: ^3.2.3
+  firebase_auth: ^4.10.0
+  aad_oauth: ^0.4.3
+  font_awesome_flutter: ^10.4.0
+  email_validator: ^2.1.17
+  file_picker: ^5.3.1
+  csv: ^5.0.2
+  cloud_firestore: ^4.9.2
+  image_picker: ^1.0.2
+  firebase_storage: ^11.2.7
+#  flutter_launcher_icons: ^0.12.0
+#flutter_icons:
+#  android: "launcher_icon"
+#  ios: false
+#  image_path: "assets/images/muet-ez-logo.png"
+##  background_color: "#FF0000"
+#  adaptive_icon_background: "#9ad00e"
+#  adaptive_icon_foreground: "assets/images/muet-ez-logo.png"
+
 
 dev_dependencies:
   flutter_test:

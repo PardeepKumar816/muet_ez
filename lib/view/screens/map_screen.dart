@@ -8,7 +8,7 @@ import '../../constants/constants.dart';
 import '../widgets/app_drawer.dart';
 
 class MapScreen extends StatefulWidget {
-   MapScreen({Key? key}) : super(key: key);
+   const MapScreen({Key? key}) : super(key: key);
 
 
    static const LatLng _center = LatLng(37.422, -122.084);

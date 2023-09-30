@@ -62,12 +62,14 @@ class ResultTable extends StatelessWidget {
                                         children: [
                                           TableRow(
                                               children: [
-                                                Container(height:36,alignment: Alignment.center,child: const TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text('Theory',textAlign: TextAlign.center,style:  TextStyle(fontSize: 13),),))
+                                               // Container(height:36,alignment: Alignment.center,child: const TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text('Theory',textAlign: TextAlign.center,style:  TextStyle(fontSize: 13),),))
+                                                TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Container(height:36,alignment: Alignment.center,child: const Text('Theory',textAlign: TextAlign.center,style:  TextStyle(fontSize: 13),)),)
                                               ]
                                           ),
                                           TableRow(
                                               children: [
-                                                Container(height:36,alignment: Alignment.center,child: const TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text('Practical',textAlign: TextAlign.center,style:  TextStyle(fontSize: 13),),))
+                                               // Container(height:36,alignment: Alignment.center,child: const TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text('Practical',textAlign: TextAlign.center,style:  TextStyle(fontSize: 13),),)),
+                                                TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Container(height: 36,alignment: Alignment.center,child: const Text('Practical',textAlign: TextAlign.center,style:  TextStyle(fontSize: 13),)),)
                                               ]
                                           ),
                                         ],))
@@ -82,12 +84,12 @@ class ResultTable extends StatelessWidget {
                         children: [
                           TableRow(
                               children: [
-                                Container(height:36,alignment: Alignment.center,child: TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text(e.value['theory']['marks obtained'],textAlign: TextAlign.center,),))
+                                TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Container(height:36,alignment:Alignment.center,child: Text(e.value['theory']['marks obtained'],textAlign: TextAlign.center,)),)
                               ]
                           ),
                           TableRow(
                               children: [
-                                Container(height:36,alignment: Alignment.center,child: TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text(e.value.length == 2 ?e.value['practical']['marks obtained'] : '-',textAlign: TextAlign.center,),))
+                                TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Container(height: 36,alignment: Alignment.center,child: Text(e.value.length == 2 ?e.value['practical']['marks obtained'] : '-',textAlign: TextAlign.center,)),)
                               ]
                           ),
                         ],),),
@@ -98,12 +100,12 @@ class ResultTable extends StatelessWidget {
                           children: [
                             TableRow(
                                 children: [
-                                  Container(height:36,alignment: Alignment.center,child: TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text(e.value['theory']['credit hours'],textAlign: TextAlign.center,),))
+                                  TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Container(height:36,alignment: Alignment.center,child: Text(e.value['theory']['credit hours'],textAlign: TextAlign.center,)),)
                                 ]
                             ),
                             TableRow(
                                 children: [
-                                  Container(height:36,alignment: Alignment.center,child: TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text(e.value.length == 2 ?e.value['practical']['credit hours'] : '-',textAlign: TextAlign.center,),))
+                                  TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Container(height: 36,alignment: Alignment.center,child: Text(e.value.length == 2 ?e.value['practical']['credit hours'] : '-',textAlign: TextAlign.center,)),)
                                 ]
                             ),
                           ],)),
@@ -114,12 +116,12 @@ class ResultTable extends StatelessWidget {
                           children: [
                             TableRow(
                                 children: [
-                                  Container(height:36,alignment: Alignment.center,child: TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text(e.value['theory']['grades'],textAlign: TextAlign.center,),))
+                                  TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Container(height: 36,alignment: Alignment.center,child: Text(e.value['theory']['grades'],textAlign: TextAlign.center,)),)
                                 ]
                             ),
                             TableRow(
                                 children: [
-                                  Container(height:36,alignment: Alignment.center,child: TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text(e.value.length == 2 ?e.value['practical']['grades'] : '-',textAlign: TextAlign.center,),))
+                                  TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Container(height: 36,alignment: Alignment.center,child: Text(e.value.length == 2 ?e.value['practical']['grades'] : '-',textAlign: TextAlign.center,)),)
                                 ]
                             ),
                           ],)),
@@ -130,12 +132,12 @@ class ResultTable extends StatelessWidget {
                           children:  [
                             TableRow(
                                 children: [
-                                  Container(height:36,alignment: Alignment.center,child: TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text(e.value['theory']['quality points'],textAlign: TextAlign.center,),))
+                                  TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Container(height: 36,alignment: Alignment.center,child: Text(e.value['theory']['quality points'],textAlign: TextAlign.center,)),)
                                 ]
                             ),
                             TableRow(
                                 children: [
-                                  Container(height:36,alignment: Alignment.center,child: TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Text(e.value.length == 2 ?e.value['practical']['quality points'] : '-',textAlign: TextAlign.center,),))
+                                  TableCell(verticalAlignment: TableCellVerticalAlignment.top,child: Container(height: 36,alignment: Alignment.center,child: Text(e.value.length == 2 ?e.value['practical']['quality points'] : '-',textAlign: TextAlign.center,)),)
                                 ]
                             ),
                           ],)),

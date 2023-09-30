@@ -17,7 +17,7 @@ class NotificationScreen extends StatelessWidget {
         elevation: 0,
         foregroundColor: AppColors.black,
       ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       backgroundColor: AppColors.blue,
       body: SafeArea(
         child: Stack(

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:muet_ez/model/networking/authentication.dart';
+import 'package:muet_ez/model/networking/firebase_data/academic_data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/app_colors.dart';
 import '../../constants/constants.dart';
+import '../../model/repository/student_model.dart';
 import '../../model/user_actions_name.dart';
 import '../../routes.dart';
 
@@ -14,6 +18,23 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _gridOption = true;
+ // String _name = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getName();
+  }
+
+  Future<void> getName() async{
+    await getSharedPreferencesInstance().then((value) {
+      Student.name = value.getString("email")!.split("@")[0];
+      Student.id = value.getString("email")!.split("@")[0];
+      Student.batch = value.getString("email")!.split("@")[0].substring(0,4);
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,32 +104,42 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      CircleAvatar(
-                        radius: 60,
-                        child: CircleAvatar(
-                          radius: 56,
-                          backgroundColor: AppColors.lightBlue,
-                          backgroundImage:
-                              AssetImage('assets/images/my_image.JPG'),
-                        ),
+                    children:  [
+                      Stack(
+                        children:  [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                              child: TextButton(onPressed: () async {}, child: const Text("Edit Profile",style: TextStyle(color: AppColors.lightBlue),))),
+                        const Align(
+                           alignment: Alignment.center,
+                           child: CircleAvatar(
+                              radius: 60,
+                              child: CircleAvatar(
+                                radius: 56,
+                                backgroundColor: AppColors.lightBlue,
+                                backgroundImage:
+                                    AssetImage('assets/images/my_image.JPG'),
+                              ),
+                            ),
+                         ),
+                        ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
-                      Text(
-                        'Pardeep Kumar',
-                        style: TextStyle(
+                       Text(
+                        Student.name??"",
+                        style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
                             color: AppColors.white),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 2,
                       ),
-                      Text(
-                        '19SW37',
-                        style: TextStyle(fontSize: 15, color: AppColors.white),
+                       Text(
+                        Student.batch??"",
+                        style: const TextStyle(fontSize: 15, color: AppColors.white),
                       ),
                     ],
                   ),
@@ -131,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   },
                   child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 24),
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     width: getDeviceSize(context).width,
                     height: getDeviceSize(context).height * 0.65,
@@ -178,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   }  else if(e.name=='Transport'){
                                                     Navigator.pushReplacementNamed(context, Routes.transportScreen);
                                                   } else if(e.name=='Log out'){
-                                                   // Navigator.pushReplacementNamed(context, Routes.transportScreen);
+                                                    Auth.logout(context);
                                                   }
                                                 },
                                                 child: CircleAvatar(

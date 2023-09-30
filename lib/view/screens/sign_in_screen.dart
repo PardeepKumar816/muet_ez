@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:muet_ez/constants/app_colors.dart';
-
+import 'package:muet_ez/model/networking/authentication.dart';
+import 'package:email_validator/email_validator.dart';
 import '../../constants/constants.dart';
 import '../../routes.dart';
 
 class SignInScreen extends StatefulWidget {
-  SignInScreen({Key? key}) : super(key: key);
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final _formKey = GlobalKey<FormState>();
-  bool _passwordVisible = false;
+
+  bool _isLoading = false;
+  final _controller = TextEditingController();
+   bool _isEmailNotProvided = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.blue,
       body: SafeArea(
         child: Stack(
           children: [
-            // SizedBox(
-            //   width: getDeviceSize(context).width,
-            //   height: getDeviceSize(context).height,
-            // ),
             Container(
               width: getDeviceSize(context).width,
               height: getDeviceSize(context).height * 0.75,
@@ -38,13 +38,8 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             Center(
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  // Text(
-                  //   'MUET-EZ',
-                  //   style: Theme.of(context).textTheme.headline4,
-                  // ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Image.asset(
@@ -53,9 +48,10 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: 160,
                     ),
                   ),
-                  Expanded(
+                 _isLoading ? const CircularProgressIndicator() :
+                 Expanded(
                     child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 32),
+                      margin: const EdgeInsets.symmetric(horizontal: 32,vertical: 32),
                       width: getDeviceSize(context).width,
                       height: getDeviceSize(context).height * 0.75,
                       decoration: const BoxDecoration(
@@ -73,98 +69,70 @@ class _SignInScreenState extends State<SignInScreen> {
                                     color: AppColors.black,
                                     fontWeight: FontWeight.w500),
                           ),
-                          Form(
-                              key: _formKey,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: Column(
-                                  children: [
-                                    TextFormField(
-                                      decoration: const InputDecoration(
-                                          prefixIcon: Icon(Icons.email),
-                                          hintText: 'Email',
-                                          hintStyle: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 17)),
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                        prefixIcon: const Icon(Icons.lock),
-                                        suffixIcon: IconButton(
-                                          icon: Icon(
-                                            // Based on passwordVisible state choose the icon
-                                            _passwordVisible
-                                                ? Icons.visibility
-                                                : Icons.visibility_off,
-                                            color: AppColors.green,
-                                          ),
-                                          onPressed: () {
-                                            // Update the state i.e. toogle the state of passwordVisible variable
-                                            setState(() {
-                                              _passwordVisible =
-                                                  !_passwordVisible;
-                                            });
-                                          },
-                                        ),
-                                        hintText: 'Password',
-                                        hintStyle: const TextStyle(
-                                            color: Colors.grey, fontSize: 17),
-                                      ),
-                                      obscureText: _passwordVisible,
-                                    ),
-                                    Align(
-                                      alignment: Alignment.centerRight,
-                                      child: TextButton(
-                                          onPressed: () {},
-                                          child: const Text(
-                                            'Forget password?',
-                                            style: TextStyle(
-                                                color: AppColors.black,
-                                                fontSize: 15),
-                                          )),
-                                    ),
-                                  ],
-                                ),
-                              )),
+                          Container(
+                            padding: const EdgeInsets.only(left: 12),
+                            width: 244,
+                            height: 48,
+                            decoration:  BoxDecoration(
+                              border: Border.all(),
+                              borderRadius:const  BorderRadius.all(Radius.circular(12))
+                            ),
+                            child: TextField(
+                              controller: _controller,
+                              decoration: const InputDecoration(border: InputBorder.none,
+                            hintText: "Enter Your Email",
+                            ),),
+                          ),
+                         if(_isEmailNotProvided)
+                         const Text("Please Provide Your Email",style: TextStyle(color: Colors.red),),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                if(_controller.text.isEmpty || !EmailValidator.validate(_controller.text)){
+                                  setState(() {_isEmailNotProvided = true;});
+                                }else{
+                                  _isEmailNotProvided = false;
+                                  setState(() {_isLoading = true;});
+                                  Auth.loginWithMicrosoft().then((value) async {
+                                     await getSharedPreferencesInstance().then((value) {value.setString("email", _controller.text);});
+                                    _isLoading = false;
+                                    if(_controller.text.contains("faculty")){
+                                      Navigator.pushReplacementNamed(context, Routes.homeScreenAdmin);
+                                    }else if(_controller.text.contains("students")){
+                                      Navigator.pushReplacementNamed(context, Routes.homeScreen);
+                                    }
+                                  });
+                                }
+                              },
                               style: ButtonStyle(
                                   shape: MaterialStateProperty.all(
                                       const RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(24)))),
                                   fixedSize: MaterialStateProperty.all(
-                                      const Size(140, 44)),
+                                      const Size(248, 44)),
                                   backgroundColor: MaterialStateProperty.all(
-                                      AppColors.green)),
-                              child: const Text(
-                                'Sign In',
-                                style: TextStyle(fontSize: 17),
+                                      AppColors.blue)),
+                              child: Row(
+                                children: const [
+                                  Icon(FontAwesomeIcons.microsoft),
+                                  SizedBox(width: 6,),
+                                  Text(
+                                    'Sign in with Microsoft',
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ],
                               )),
+                          Column(
+                            children: const [
+                              Text("Please sign in with user credentials provided by MUET",textAlign: TextAlign.center,),
+                              SizedBox(height: 16,),
+                              Text('Ex: 19sw37@students.muet.edu.pk'),
+                            ],
+                          )
                         ],
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Don\'t have an account?',
-                        style: TextStyle(color: AppColors.white, fontSize: 15),
-                      ),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pushReplacementNamed(
-                                context, Routes.signUpScreen);
-                          },
-                          child: const Text(
-                            'Sign Up',
-                            style:
-                                TextStyle(color: AppColors.green, fontSize: 15),
-                          )),
-                    ],
-                  )
                 ],
               ),
             )

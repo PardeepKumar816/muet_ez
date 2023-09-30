@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import '../../constants/app_colors.dart';
 import '../../constants/constants.dart';
+import '../../routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -21,6 +24,22 @@ class _SplashScreenState extends State<SplashScreen>
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 2))
           ..repeat();
+    Timer(const Duration(seconds: 2),alreadySignedIn);
+
+  }
+
+  Future<void> alreadySignedIn() async {
+   await getSharedPreferencesInstance().then((value) {
+     if(value.containsKey("token")){
+       if(value.getString("email")!.contains("students")){
+         Navigator.pushReplacementNamed(context, Routes.homeScreen);
+       }else if(value.getString("email")!.contains("faculty")){
+         Navigator.pushReplacementNamed(context, Routes.homeScreenAdmin);
+       }
+     }else{
+       Navigator.pushReplacementNamed(context, Routes.signInScreen);
+     }
+   });
   }
 
   @override
@@ -50,16 +69,6 @@ class _SplashScreenState extends State<SplashScreen>
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Text(
-                  //   'Welcome',
-                  //   style: Theme.of(context)
-                  //       .textTheme
-                  //       .headline2!
-                  //       .copyWith(color: AppColors.white),
-                  // ),
-                  // const SizedBox(
-                  //   height: 32,
-                  // ),
                   Padding(
                     padding:
                         const EdgeInsets.only(left: 0, right: 0, bottom: 0),
