@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:muet_ez/model/dummy_data.dart';
-
+import 'package:muet_ez/model/networking/firebase_data/notification_data.dart';
+import 'package:muet_ez/model/repository/student_model.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/constants.dart';
-import '../../routes.dart';
 import '../widgets/app_drawer.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -31,27 +30,81 @@ class NotificationScreen extends StatelessWidget {
                       bottomRight: Radius.circular(24),
                       bottomLeft: Radius.circular(24))),
             ),
-            ListView.builder(itemCount:DummyData.notification.length,itemBuilder: (context,index){
-
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: InkWell(
-                  onTap: (){
-Navigator.pushNamed(context, Routes.notificationDownloadScreen,arguments: DummyData.notification[index]);
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    color: index.isOdd ? const Color(0xffF7FCD2) : const Color(0xffC0EAF5),
-                    height: 56,
-                    child: Text(DummyData.notification[index],textAlign: TextAlign.center,),
-                  ),
-                ),
-              );
-            })
+            FutureBuilder<List<String>>(
+              future: NotificationData().getNotificationData(Student.batch??""), // your function
+              builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child:  CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                }
+                else if(snapshot.data!.isNotEmpty) {
+                  return SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: snapshot.data!.map<Widget>((e) {
+                        return  InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> NotificationViewScreen(url: e)));
+                          },
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 16,top: 16),
+                              child: Container(
+                                width: 300,
+                                  height: 400,
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(Radius.circular(24)),
+                                    image: DecorationImage(
+                                      image: NetworkImage(e),
+                                      fit: BoxFit.fill
+                                    )
+                                  ),
+                                 // child: Image.network(e),
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  );
+                }
+                else{
+                  return const Padding(
+                    padding:  EdgeInsets.only(bottom: 32),
+                    child: Text("No Data Found",textAlign: TextAlign.center,style: TextStyle(fontSize: 32,color: Colors.red),),
+                  );
+                }
+              },
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+
+class NotificationViewScreen extends StatelessWidget {
+  const NotificationViewScreen({Key? key,required this.url}) : super(key: key);
+
+  final String url;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body:SafeArea(
+        child: Column(
+          children: [
+            IconButton(onPressed: (){
+              Navigator.pop(context);
+            }, icon: const Icon(Icons.clear,color: Colors.white,)),
+            Expanded(child: Image.network(url)),
+          ],
+        ),
+      ) ,
     );
   }
 }

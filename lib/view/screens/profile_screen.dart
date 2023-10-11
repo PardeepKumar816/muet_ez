@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:muet_ez/model/repository/student_model.dart';
 
 import '../../constants/app_colors.dart';
 import '../../constants/constants.dart';
+import '../../routes.dart';
 import '../widgets/app_drawer.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -30,20 +32,34 @@ class ProfileScreen extends StatelessWidget {
                       bottomLeft: Radius.circular(24))),
             ),
            ListView(
-             children:  const [
+             children:   [
                 Center(
                  child: CircleAvatar(
-                   backgroundImage: AssetImage('assets/images/my_image.JPG'),
+                   backgroundImage: Student.image != null ?
+                   NetworkImage(Student.image!)  :
+                   const AssetImage( 'assets/images/user.png') as ImageProvider,
                    radius: 64,
                  ),
                ),
-               SizedBox(height: 8,),
-               ProfileContainer(icon: Icons.person, about: 'Name', data: 'Pardeep Kumar',),
-               ProfileContainer(icon: Icons.perm_identity, about: 'Student ID', data: '19SW37',),
-               ProfileContainer(icon: Icons.subject, about: 'Program', data: 'Software Engineering',),
-               ProfileContainer(icon: Icons.alternate_email, about: 'Email', data: '19sw37@students.muet.edu.pk',),
-               ProfileContainer(icon: Icons.call, about: 'Mobile', data: '03353146121',),
-               ProfileContainer(icon: Icons.area_chart, about: 'Address', data: 'Sanghar',),
+              const SizedBox(height: 8,),
+               ProfileContainer(icon: Icons.person, about: 'Name', data: Student.name!,),
+               ProfileContainer(icon: Icons.perm_identity, about: 'Student ID', data: Student.id!,),
+              const ProfileContainer(icon: Icons.subject, about: 'Program', data: 'Software Engineering',),
+               ProfileContainer(icon: Icons.alternate_email, about: 'Email', data: '${Student.id}@students.muet.edu.pk',),
+                ProfileContainer(icon: Icons.call, about: 'Mobile', data: Student.number??'-',),
+                ProfileContainer(icon: Icons.area_chart, about: 'Address', data: Student.address??'-',),
+               Padding(
+                 padding: const EdgeInsets.symmetric(horizontal: 32,vertical: 16),
+                 child: ElevatedButton(
+                     onPressed: (){
+                       Navigator.pushNamed(context, Routes.editProfileScreen);
+                     },
+                   style: const ButtonStyle(
+                     backgroundColor: MaterialStatePropertyAll(AppColors.green)
+                   ),
+                     child: const Text("Edit Profile"),
+                 ),
+               ),
              ],
            )
           ],

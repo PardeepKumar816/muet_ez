@@ -28,42 +28,78 @@ class Auth{
   static final AadOAuth oauth = AadOAuth(config);
 
 
-  static Future<void> loginWithMicrosoft() async {
+  // static Future<dynamic> loginWithMicrosoft() async {
+  //
+  //   await oauth.login().then((value) async {
+  //     value.fold(
+  //           (Failure failure) {
+  //         // Auth failed, show error
+  //         if (kDebugMode) {
+  //           print(failure.message);
+  //         }
+  //       },
+  //           (Token token) async {
+  //         if (token.accessToken == null) {
+  //           // print(token.accessToken);
+  //           if (kDebugMode) {
+  //             print("error on token");
+  //           }
+  //           // Handle missing access token, show error or whatever
+  //           return;
+  //         }
+  //
+  //         // Handle successful login
+  //         if (kDebugMode) {
+  //           print('Logged in successfully, your access token: ${token.accessToken!}');
+  //           await getSharedPreferencesInstance().then((value){value.setString("token", token.accessToken!);});
+  //         }
+  //
+  //         // Perform necessary actions with the access token, such as API calls or storing it securely.
+  //
+  //         //    await oauth.logout();
+  //       },
+  //     );
+  //   }).catchError((err){
+  //     if (kDebugMode) {
+  //       print(err.toString());
+  //     }
+  //   });
+  // }
 
-    await oauth.login().then((value) async {
-      await value.fold(
-            (Failure failure) {
-          // Auth failed, show error
-          if (kDebugMode) {
-            print(failure.message);
-          }
-        },
-            (Token token) async {
-          if (token.accessToken == null) {
-            // print(token.accessToken);
+  static Future<dynamic> loginWithMicrosoft() async {
+    try {
+      await oauth.login().then((value) async {
+        value.fold(
+              (Failure failure) {
+            // Auth failed, show error
             if (kDebugMode) {
-              print("error on token");
+              print(failure.message);
             }
-            // Handle missing access token, show error or whatever
-            return;
-          }
+            throw Exception('Login failed: ${failure.message}');
+          },
+              (Token token) async {
+            if (token.accessToken == null) {
+              // print(token.accessToken);
+              if (kDebugMode) {
+                print("error on token");
+              }
+              throw Exception('Error on token');
+            }
 
-          // Handle successful login
-          if (kDebugMode) {
-            print('Logged in successfully, your access token: ${token.accessToken!}');
-            await getSharedPreferencesInstance().then((value){value.setString("token", token.accessToken!);});
-          }
-
-          // Perform necessary actions with the access token, such as API calls or storing it securely.
-
-          //    await oauth.logout();
-        },
-      );
-    }).catchError((err){
+            // Handle successful login
+            if (kDebugMode) {
+              print('Logged in successfully, your access token: ${token.accessToken!}');
+              await getSharedPreferencesInstance().then((value){value.setString("token", token.accessToken!);});
+            }
+          },
+        );
+      });
+    } catch (err) {
       if (kDebugMode) {
         print(err.toString());
       }
-    });
+      return err;
+    }
   }
 
   static Future<void> logout(BuildContext context)async{

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:muet_ez/model/repository/student_model.dart';
 import '../../constants/app_colors.dart';
+import '../../model/networking/authentication.dart';
 import '../../routes.dart';
+
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
     Key? key,
@@ -14,16 +16,18 @@ class AppDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          UserAccountsDrawerHeader(
-            decoration: BoxDecoration(
+           UserAccountsDrawerHeader(
+            decoration: const BoxDecoration(
                 color: AppColors.green,
                 borderRadius: BorderRadius.only(bottomLeft: Radius.circular(24),bottomRight: Radius.circular(24))
             ),
-            accountName: Text('Pardeep Kumar'),
-            accountEmail: Text('19sw37@student.muet.edu.pk'),
-            currentAccountPicture: CircleAvatar(
+            accountName: Text(Student.name!),
+            accountEmail: Text('${Student.id}@student.muet.edu.pk'),
+            currentAccountPicture:  CircleAvatar(
               backgroundColor: Colors.white,
-              backgroundImage: AssetImage('assets/images/my_image.JPG'),
+              backgroundImage: Student.image != null ?
+              NetworkImage(Student.image!)  :
+              const AssetImage( 'assets/images/user.png') as ImageProvider,
             ),
           ),
           ListTile(
@@ -56,16 +60,16 @@ class AppDrawer extends StatelessWidget {
             },
           ),
           Divider(color: AppColors.white.withOpacity(0.5),),
-          ListTile(
-            iconColor: AppColors.white,
-            textColor: AppColors.white,
-            leading: const CircleAvatar(backgroundImage: AssetImage('assets/images/schedule.png'),),
-            title: const Text('Schedule'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, Routes.scheduleScreen);
-            },
-          ),
-          Divider(color: AppColors.white.withOpacity(0.5),),
+          // ListTile(
+          //   iconColor: AppColors.white,
+          //   textColor: AppColors.white,
+          //   leading: const CircleAvatar(backgroundImage: AssetImage('assets/images/schedule.png'),),
+          //   title: const Text('Schedule'),
+          //   onTap: () {
+          //     Navigator.pushReplacementNamed(context, Routes.scheduleScreen);
+          //   },
+          // ),
+          // Divider(color: AppColors.white.withOpacity(0.5),),
           ListTile(
             iconColor: AppColors.white,
             textColor: AppColors.white,
@@ -120,7 +124,7 @@ class AppDrawer extends StatelessWidget {
             iconColor: AppColors.white,
             textColor: AppColors.white,
             leading: const CircleAvatar(backgroundImage: AssetImage('assets/images/events.png'),),
-            title: const Text('Events'),
+            title: const Text('Announcement'),
             onTap: () {
               Navigator.pushReplacementNamed(context, Routes.eventsScreen);
             },
@@ -142,7 +146,7 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Logout'),
             onTap: () {
-              // Perform logout logic here...
+              Auth.logout(context);
             },
           ),
         ],

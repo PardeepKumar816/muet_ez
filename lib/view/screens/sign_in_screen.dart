@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:muet_ez/constants/app_colors.dart';
@@ -86,21 +87,33 @@ class _SignInScreenState extends State<SignInScreen> {
                          if(_isEmailNotProvided)
                          const Text("Please Provide Your Email",style: TextStyle(color: Colors.red),),
                           ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 if(_controller.text.isEmpty || !EmailValidator.validate(_controller.text)){
                                   setState(() {_isEmailNotProvided = true;});
                                 }else{
                                   _isEmailNotProvided = false;
                                   setState(() {_isLoading = true;});
-                                  Auth.loginWithMicrosoft().then((value) async {
-                                     await getSharedPreferencesInstance().then((value) {value.setString("email", _controller.text);});
+                                  try{
+                                  final result = await Auth.loginWithMicrosoft();
+                                  if(result is Exception){
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(result.toString())));
+                                    setState(() {_isLoading = false;});
+                                  }else{
+                                    await getSharedPreferencesInstance().then((value) {value.setString("email", _controller.text);});
                                     _isLoading = false;
                                     if(_controller.text.contains("faculty")){
                                       Navigator.pushReplacementNamed(context, Routes.homeScreenAdmin);
-                                    }else if(_controller.text.contains("students")){
+                                    }
+                                    else if(_controller.text.contains("students")){
                                       Navigator.pushReplacementNamed(context, Routes.homeScreen);
                                     }
-                                  });
+                                  }
+                                  } catch(error){
+                                    if (kDebugMode) {
+                                      print(error.toString());
+                                    }
+                                  }
+
                                 }
                               },
                               style: ButtonStyle(

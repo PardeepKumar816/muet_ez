@@ -1,8 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:muet_ez/model/networking/authentication.dart';
-import 'package:muet_ez/model/networking/firebase_data/academic_data.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../constants/app_colors.dart';
 import '../../constants/constants.dart';
 import '../../model/repository/student_model.dart';
@@ -24,16 +23,34 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getName();
+   // getName();
+    getData();
   }
 
   Future<void> getName() async{
+
+  }
+
+  Future<void> getData() async{
+
     await getSharedPreferencesInstance().then((value) {
       Student.name = value.getString("email")!.split("@")[0];
       Student.id = value.getString("email")!.split("@")[0];
       Student.batch = value.getString("email")!.split("@")[0].substring(0,4);
-      setState(() {});
     });
+
+    final result =  await FirebaseStorage.instance.ref('profile/${Student.id}').listAll();
+    Student.image = await result.items[0].getDownloadURL();
+
+    await FirebaseFirestore.instance.collection("userProfile").doc(Student.id).get()
+        .then((value) {
+          if(value.data()!['name'] != null){
+            Student.name = value.data()!['name'];
+            Student.number = value.data()!['number'];
+            Student.address = value.data()!['address'];
+          }
+    });
+    setState(() {});
   }
 
   @override
@@ -107,10 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children:  [
                       Stack(
                         children:  [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                              child: TextButton(onPressed: () async {}, child: const Text("Edit Profile",style: TextStyle(color: AppColors.lightBlue),))),
-                        const Align(
+                         Align(
                            alignment: Alignment.center,
                            child: CircleAvatar(
                               radius: 60,
@@ -118,7 +132,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 radius: 56,
                                 backgroundColor: AppColors.lightBlue,
                                 backgroundImage:
-                                    AssetImage('assets/images/my_image.JPG'),
+                                Student.image != null ?
+                                NetworkImage(Student.image!)  :
+                                const AssetImage( 'assets/images/user.png') as ImageProvider,
                               ),
                             ),
                          ),
@@ -138,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 2,
                       ),
                        Text(
-                        Student.batch??"",
+                        Student.id??"",
                         style: const TextStyle(fontSize: 15, color: AppColors.white),
                       ),
                     ],
@@ -172,8 +188,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        _gridOption
-                            ? Expanded(
+                      //  _gridOption
+                           // ?
+                        Expanded(
                                 child: GridView(
                                   scrollDirection: Axis.horizontal,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -187,27 +204,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                               InkWell(
                                                 onTap: () {
                                                   if(e.name == 'Attendance'){
-                                                    Navigator.pushReplacementNamed(context, Routes.attendanceScreen);
-                                                  }else if(e.name=='Schedule'){
-                                                    Navigator.pushReplacementNamed(context, Routes.scheduleScreen);
-                                                  }else if(e.name=='Map'){
-                                                    Navigator.pushReplacementNamed(context, Routes.mapScreen);
+                                                    Navigator.pushNamed(context, Routes.attendanceScreen);
+                                                  }
+                                                  // else if(e.name=='Schedule'){
+                                                  //   Navigator.pushNamed(context, Routes.scheduleScreen);
+                                                 // }
+                                                  else if(e.name=='Map'){
+                                                    Navigator.pushNamed(context, Routes.mapScreen);
                                                   }else if(e.name=='Emergency'){
-                                                    Navigator.pushReplacementNamed(context, Routes.emergencyScreen);
+                                                    Navigator.pushNamed(context, Routes.emergencyScreen);
                                                   }else if(e.name=='Challan'){
-                                                    Navigator.pushReplacementNamed(context, Routes.challanScreen);
+                                                    Navigator.pushNamed(context, Routes.challanScreen);
                                                   }else if(e.name=='Notification'){
-                                                    Navigator.pushReplacementNamed(context, Routes.notificationScreen);
+                                                    Navigator.pushNamed(context, Routes.notificationScreen);
                                                   }else if(e.name=='Dinning'){
-                                                    Navigator.pushReplacementNamed(context, Routes.dinningScreen);
+                                                    Navigator.pushNamed(context, Routes.dinningScreen);
                                                   }else if(e.name=='Profile'){
-                                                    Navigator.pushReplacementNamed(context, Routes.profileScreen);
+                                                    Navigator.pushNamed(context, Routes.profileScreen);
                                                   }else if(e.name=='Results'){
-                                                    Navigator.pushReplacementNamed(context, Routes.resultsScreen);
-                                                  } else if(e.name=='Events'){
-                                                    Navigator.pushReplacementNamed(context, Routes.eventsScreen);
+                                                    Navigator.pushNamed(context, Routes.resultsScreen);
+                                                  } else if(e.name=='Announcements'){
+                                                    Navigator.pushNamed(context, Routes.eventsScreen);
                                                   }  else if(e.name=='Transport'){
-                                                    Navigator.pushReplacementNamed(context, Routes.transportScreen);
+                                                    Navigator.pushNamed(context, Routes.transportScreen);
                                                   } else if(e.name=='Log out'){
                                                     Auth.logout(context);
                                                   }
@@ -238,93 +257,94 @@ class _HomeScreenState extends State<HomeScreen> {
                                       .toList(),
                                 ),
                               )
-                            : Expanded(
-                                child: GridView(
-                                  scrollDirection: Axis.vertical,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                  ),
-                                  children: UserActions.actions
-                                      .sublist(
-                                          12, UserActions.actions.length - 1)
-                                      .map((e) => Column(
-                                            children: [
-                                              InkWell(
-                                                  onTap: () {},
-                                                  child: CircleAvatar(
-                                                    backgroundColor:
-                                                        AppColors.lightBlue,
-                                                    radius: 40,
-                                                    child: Image.asset(
-                                                      e.imgUrl,
-                                                      width: 64,
-                                                      height: 72,
-                                                      fit: BoxFit.contain,
-                                                    ),
-                                                  )),
-                                              const SizedBox(
-                                                height: 2,
-                                              ),
-                                              Text(
-                                                e.name,
-                                                style: const TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              )
-                                            ],
-                                          ))
-                                      .toList(),
-                                ),
-                              ),
-                        Center(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  _gridOption = true;
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  width: _gridOption ? 32 : 14,
-                                  height: 5,
-                                  decoration: BoxDecoration(
-                                    color: _gridOption
-                                        ? AppColors.green
-                                        : Colors.grey,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(12),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 2,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  _gridOption = false;
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  width: _gridOption ? 14 : 32,
-                                  height: 5,
-                                  decoration: BoxDecoration(
-                                    color: _gridOption
-                                        ? Colors.grey
-                                        : AppColors.green,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(12),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
+                         //   :
+                        // Expanded(
+                        //         child: GridView(
+                        //           scrollDirection: Axis.vertical,
+                        //           physics: const NeverScrollableScrollPhysics(),
+                        //           gridDelegate:
+                        //               const SliverGridDelegateWithFixedCrossAxisCount(
+                        //             crossAxisCount: 3,
+                        //           ),
+                        //           children: UserActions.actions
+                        //               .sublist(
+                        //                   12, UserActions.actions.length - 1)
+                        //               .map((e) => Column(
+                        //                     children: [
+                        //                       InkWell(
+                        //                           onTap: () {},
+                        //                           child: CircleAvatar(
+                        //                             backgroundColor:
+                        //                                 AppColors.lightBlue,
+                        //                             radius: 40,
+                        //                             child: Image.asset(
+                        //                               e.imgUrl,
+                        //                               width: 64,
+                        //                               height: 72,
+                        //                               fit: BoxFit.contain,
+                        //                             ),
+                        //                           )),
+                        //                       const SizedBox(
+                        //                         height: 2,
+                        //                       ),
+                        //                       Text(
+                        //                         e.name,
+                        //                         style: const TextStyle(
+                        //                             fontWeight:
+                        //                                 FontWeight.w600),
+                        //                       )
+                        //                     ],
+                        //                   ))
+                        //               .toList(),
+                        //         ),
+                        //       ),
+                        // Center(
+                        //   child: Row(
+                        //     crossAxisAlignment: CrossAxisAlignment.center,
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       InkWell(
+                        //         onTap: () {
+                        //           _gridOption = true;
+                        //           setState(() {});
+                        //         },
+                        //         child: Container(
+                        //           width: _gridOption ? 32 : 14,
+                        //           height: 5,
+                        //           decoration: BoxDecoration(
+                        //             color: _gridOption
+                        //                 ? AppColors.green
+                        //                 : Colors.grey,
+                        //             borderRadius: const BorderRadius.all(
+                        //               Radius.circular(12),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       const SizedBox(
+                        //         width: 2,
+                        //       ),
+                        //       InkWell(
+                        //         onTap: () {
+                        //           _gridOption = false;
+                        //           setState(() {});
+                        //         },
+                        //         child: Container(
+                        //           width: _gridOption ? 14 : 32,
+                        //           height: 5,
+                        //           decoration: BoxDecoration(
+                        //             color: _gridOption
+                        //                 ? Colors.grey
+                        //                 : AppColors.green,
+                        //             borderRadius: const BorderRadius.all(
+                        //               Radius.circular(12),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // )
                       ],
                     ),
                   ),

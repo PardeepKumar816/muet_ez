@@ -380,3 +380,150 @@ class _BottomSheetWidgetForNotificationState extends State<BottomSheetWidgetForN
     );
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class BottomSheetWidgetForAnnouncement extends StatefulWidget {
+  const BottomSheetWidgetForAnnouncement({Key? key, }) : super(key: key);
+
+  @override
+  State<BottomSheetWidgetForAnnouncement> createState() => _BottomSheetWidgetForAnnouncementState();
+}
+
+class _BottomSheetWidgetForAnnouncementState extends State<BottomSheetWidgetForAnnouncement> {
+
+  final _controller1 = TextEditingController();
+  final _controller2 = TextEditingController();
+  bool _university = false;
+  bool _batch = false;
+  bool _isValuesProvided = false;
+  bool _isUploading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return  _isUploading ? SizedBox(height: getDeviceSize(context).height*0.5,child: const CircularProgressIndicator()) :
+    Padding(
+      padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.min,
+        children:  [
+          const SizedBox(height: 32,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Announcement For Department",style: TextStyle(color: AppColors.white),),
+              Theme(
+                data: ThemeData(unselectedWidgetColor: Colors.white),
+                child: Checkbox(
+                    value: _university, onChanged: (value){
+                  setState(() {
+                    _university = value!;
+                    if(_batch && _university){
+                      _batch = false;
+                    }
+                  });
+                }),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Announcement For Batch",style: TextStyle(color: AppColors.white),),
+              Theme(
+                data: ThemeData(unselectedWidgetColor: Colors.white),
+                child: Checkbox(
+                    value: _batch, onChanged: (value){
+                  setState(() {
+                    _batch = value!;
+                    if(_batch && _university){
+                      _university = false;
+                    }
+                  });
+                }),
+              ),
+            ],
+          ),
+          if(_batch)
+            Container(
+              padding: const EdgeInsets.only(left: 16),
+              width: getDeviceSize(context).width*0.8,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(45))
+              ),
+              child: TextField(
+                controller: _controller1,
+                showCursor: true,
+                cursorColor: Colors.blue,
+                decoration:const InputDecoration(
+                    hintText: "Enter Batch Ex: 19sw",
+                    border: InputBorder.none
+                ),
+              ),
+            ),
+          const SizedBox(height: 32,),
+          if(_isValuesProvided)
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 24),
+              child: Text("Please Provide all values above",style: TextStyle(color: Colors.red),),
+            ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Container(
+              padding: const EdgeInsets.only(left: 16),
+              width: getDeviceSize(context).width*0.8,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(45))
+              ),
+              child: TextField(
+                controller: _controller2,
+                showCursor: true,
+                cursorColor: Colors.blue,
+                decoration:const InputDecoration(
+                    hintText: "ThoughtLab at 1:00 pm in Lab 1",
+                    border: InputBorder.none
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: ElevatedButton(
+                onPressed: () async{
+                  if(_controller2.text.isNotEmpty){
+                    if(_batch){
+                      if(_controller1.text.isNotEmpty){
+                        setState(() {_isUploading = true;});
+                        await addAnnouncementBatch(_controller2.text,_controller1.text);
+                        _isValuesProvided = false;
+                        _isUploading = false;
+                        Navigator.pop(context);
+                      }else{
+                        setState(() {_isValuesProvided = true;});
+                      }
+                    }
+                    else if(_university){
+                      setState(() {_isUploading = true;});
+                      await addAnnouncementDepartment(_controller2.text);
+                      _isUploading = false;
+                      Navigator.pop(context);
+                    }
+                  }else{
+                    setState(() {_isValuesProvided = true;});
+                  }
+                },
+                style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(AppColors.green),
+                    fixedSize: MaterialStatePropertyAll(Size(200,40)),
+                    shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(45))))
+                ),
+                child: const Text("Add")),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -3,6 +3,7 @@ import 'package:muet_ez/view/screens/attendance_screen.dart';
 import 'package:muet_ez/view/screens/auth_screen.dart';
 import 'package:muet_ez/view/screens/challan_screen.dart';
 import 'package:muet_ez/view/screens/dinning_screen.dart';
+import 'package:muet_ez/view/screens/edit_profile_screen.dart';
 import 'package:muet_ez/view/screens/emergency_screen.dart';
 import 'package:muet_ez/view/screens/events_screen.dart';
 import 'package:muet_ez/view/screens/home_screen.dart';
@@ -22,10 +23,10 @@ class Routes {
   static String signInScreen = '/SignInScreen';
   //static String signUpScreen = '/SignUpScreen';
   static String homeScreen = '/HomeScreen';
-  static String authScreen = '/AuthScreen';
+ // static String authScreen = '/AuthScreen';
   static String splashScreen = '/SplashScreen';
   static String challanScreen = 'ChallanScreen';
-  static String scheduleScreen = '/ScheduleScreen';
+//  static String scheduleScreen = '/ScheduleScreen';
   static String attendanceScreen = '/AttendanceScreen';
   static String resultsScreen = '/ResultsScreen';
   static String notificationScreen = '/NotificationScreen';
@@ -34,19 +35,21 @@ class Routes {
   static String dinningScreen = '/DinningScreen';
   static String transportScreen = '/TransportScreen';
   static String emergencyScreen = '/EmergencyScreen';
-  static String notificationDownloadScreen = '/NotificationDownloadScreen';
-  static String newsDownloadScreen = '/NewsDownloadScreen';
+//  static String notificationDownloadScreen = '/NotificationDownloadScreen';
+//  static String newsDownloadScreen = '/NewsDownloadScreen';
   static String mapScreen = '/MapScreen';
   static String homeScreenAdmin = '/HomeScreenAdmin';
+  static String editProfileScreen = '/EditProfileScreen';
+
 
   static getRoutes(context) => {
         Routes.signInScreen: (context) => SignInScreen(),
-        Routes.authScreen: (context) => const AuthScreen(),
+      //  Routes.authScreen: (context) => const AuthScreen(),
         Routes.homeScreen: (context) => const HomeScreen(),
        // Routes.signUpScreen: (context) => SignUpScreen(),
         Routes.splashScreen: (context) => SplashScreen(),
         Routes.challanScreen: (context) => ChallanScreen(),
-        Routes.scheduleScreen: (context) => ScheduleScreen(),
+      //  Routes.scheduleScreen: (context) => ScheduleScreen(),
     Routes.attendanceScreen: (context)=> AttendanceScreen(),
     Routes.resultsScreen: (context)=> ResultsScreen(),
     Routes.profileScreen: (context)=> ProfileScreen(),
@@ -55,9 +58,10 @@ class Routes {
     Routes.dinningScreen:(context)=> DinningScreen(),
     Routes.transportScreen:(context)=> TransportScreen(),
     Routes.emergencyScreen: (context)=> EmergencyScreen(),
-    Routes.notificationDownloadScreen: (context) => NotificationDownloadScreen(text: '',),
-    Routes.newsDownloadScreen : (context) => NewsDownloadScreen(text: '',),
+  //  Routes.notificationDownloadScreen: (context) => NotificationDownloadScreen(text: '',),
+  //  Routes.newsDownloadScreen : (context) => NewsDownloadScreen(text: '',),
     Routes.mapScreen:(context)=>MapScreen(),
     Routes.homeScreenAdmin:(context) => HomeScreenAdmin(),
+    Routes.editProfileScreen:(context)=>EditProfileScreen(),
       };
 }

@@ -66,7 +66,7 @@ class _HomeScreenAdminState extends State<HomeScreenAdmin> {
                             shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(45))))
                           ),
                           child: const Text("Add Academic Records")),
-                      SizedBox(height: getDeviceSize(context).height*0.1,),
+                      SizedBox(height: getDeviceSize(context).height*0.05,),
                       ElevatedButton(
                           onPressed: (){
                             bottomSheetCallback(context,const BottomSheetWidgetForChallan());
@@ -77,7 +77,7 @@ class _HomeScreenAdminState extends State<HomeScreenAdmin> {
                               shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(45))))
                           ),
                           child: const Text("Add Challan Records")),
-                      SizedBox(height: getDeviceSize(context).height*0.1,),
+                      SizedBox(height: getDeviceSize(context).height*0.05,),
                       ElevatedButton(
                           onPressed: () async {
                             await bottomSheetCallback(context,const BottomSheetWidgetForNotification());
@@ -88,6 +88,17 @@ class _HomeScreenAdminState extends State<HomeScreenAdmin> {
                               shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(45))))
                           ),
                           child: const Text("Upload Notifications")),
+                      SizedBox(height: getDeviceSize(context).height*0.05,),
+                      ElevatedButton(
+                          onPressed: () async {
+                            await bottomSheetCallback(context,const BottomSheetWidgetForAnnouncement());
+                          },
+                          style: const ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(AppColors.blue),
+                              fixedSize: MaterialStatePropertyAll(Size(200,40)),
+                              shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(45))))
+                          ),
+                          child: const Text("Add Announcements")),
                     ],
                   ),
                 ),
