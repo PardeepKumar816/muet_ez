@@ -1,0 +1,1 @@
+-keep class com.muet_ez.muet_ez.BuildConfig { *; }

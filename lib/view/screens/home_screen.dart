@@ -40,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     final result =  await FirebaseStorage.instance.ref('profile/${Student.id}').listAll();
+    print(result.items);
     Student.image = await result.items[0].getDownloadURL();
 
     await FirebaseFirestore.instance.collection("userProfile").doc(Student.id).get()
